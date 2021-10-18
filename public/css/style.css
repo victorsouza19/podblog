@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap');
+
+:root{
+--nav-title:  #8979F2; 
+--text-color: #35F29A;
+--nav-text: #F23E16;
+--button-bg: #27F27F;
+--body-bg: #F2F2F2;
+--nav-bg: #1a1a1a;
+  color: #6805F2;
+  color: #5204BF;
+  color: #310273;
+  color: #F23E16;
+  color: #0D0D0D;
+}
+
+/* RGBA if necessary
+color: rgba(137, 121, 242, 1); }
+color: rgba(53, 242, 154, 1); }
+color: rgba(38, 242, 126, 1); }
+color: rgba(242, 242, 242, 1); }
+color: rgba(12, 12, 12, 1); }
+*/
+
+
+/* Color Theme Swatches in RGBA 
+color: rgba(103, 4, 242, 1);
+color: rgba(81, 3, 191, 1);
+ color: rgba(49, 2, 114, 1);
+color: rgba(242, 62, 21, 1);
+color: rgba(12, 12, 12, 1);
+*/
+
+
+
+body{
+  background-color: var(--body-bg);
+}
+
+.navbar{
+  background-color: var(--nav-bg);
+  box-shadow: 0 1px 5px #27f27f4f;
+  
+}
+
+.navbar-brand{
+    background-color: #6805F2;
+    border-radius: 2rem;
+    color: white;
+    font-weight: 600;
+    padding: 0.2rem 1rem;
+}
+
+.navbar img{
+  max-width: 1.2em;
+  margin: 0 0.2em; 
+}
+
+#span-title{
+  color: var(--body-bg);
+  background-image: none;
+}
+
+
+.nav.item,
+.nav-link{
+  color:#F23E16;
+  margin-left: 1em; 
+}
+
+.nav-link:hover{
+  color: var(--button-bg);
+}
+
