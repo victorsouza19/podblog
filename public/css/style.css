@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600&display=swap');
 
 :root{
 --nav-title:  #8979F2; 
 --text-color: #35F29A;
---nav-text: #F23E16;
+--nav-text: #70e2fb;
+--nav-text-bg: #a1eeff;
 --button-bg: #27F27F;
 --body-bg: #F2F2F2;
 --nav-bg: #1a1a1a;
@@ -44,17 +45,10 @@ body{
 }
 
 .navbar-brand{
-    background-color: #6805F2;
-    border-radius: 2rem;
-    color: white;
-    font-weight: 600;
-    padding: 0.2rem 1rem;
+  max-height: 100%;
 }
 
-.navbar img{
-  max-width: 1.2em;
-  margin: 0 0.2em; 
-}
+
 
 #span-title{
   color: var(--body-bg);
@@ -64,11 +58,21 @@ body{
 
 .nav.item,
 .nav-link{
-  color:#F23E16;
+  color: var(--nav-text);
   margin-left: 1em; 
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  transition: 0.5s;
+  
+}
+
+.nav-link:first-child{
+  margin-right: 1em;
 }
 
 .nav-link:hover{
-  color: var(--button-bg);
+  color: var(--nav-text-bg);
+  box-shadow: 0px 1px var(--nav-text-bg);
 }
 

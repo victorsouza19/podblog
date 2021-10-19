@@ -1,0 +1,62 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+  <%- include('../../partials/navbar.ejs') %> 
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="mt-4">Artigos</h2>
+      <a href="/admin/articles/new" class="btn btn-success d-flex align-items-center">Criar Novo Artigo</a>
+    </div>
+    
+    <hr>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Título</th>
+          <th>Slug</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% articles.forEach(article => { %>
+        <tr>
+          <th><%= article.id%></th>
+          <th><%=article.title%></th>
+          <th><%=article.slug%></th>
+          <th><%=article.category.title%></th>
+          <th>
+            <a href="/articles/edit/<%= article.id %>" class="btn btn-warning">Editar</a>
+            <form method="POST" action="/articles/delete" style="display: inline" onsubmit="deleteCheck(event, this)">
+              <input type="hidden" name="id" value="<%= article.id%>">
+              <button type="submit" class="btn btn-outline-danger">Apagar</button>
+            </form>
+          </th>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+<%- include('../../partials/footer.ejs') %>
+<script>
+  function deleteCheck(event, form){
+    event.preventDefault();
+
+    Swal.fire({
+      title: 'Você deseja apagar este artigo?',
+      text: 'Esta ação não pode ser desfeita.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#2D9C23',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, apagar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if(result.isConfirmed) {
+        form.submit();
+      }
+    });
+  };
+
+</script>
