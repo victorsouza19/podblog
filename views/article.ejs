@@ -2,19 +2,13 @@
   <body>
     <%- include('partials/homenavbar.ejs') %> 
     <div class="container">
-      <% articles.forEach((article) => { %>
-      <div class="card mt-4">
+      <div class="card mt-4 mb-4">
         <div class="card-body">
           <h3><%= article.title %></h3>
+          <p><%- article.body %></p>
         </div>
         <div class="card-footer mt-2">
-          <a href="/<%= article.slug %>" class="btn btn-dark">Ler Artigo</a>
-        </div>
-      </div>
-      <% }); %> 
-      <div class="row">
-        <div class="col col-12 page-item">
-          <a style="float:right" class="mt-4 mb-4 page-link" href="/articles/page/2"> >> </a>
+          <a href="/" class="btn btn-dark">Voltar</a>
         </div>
       </div>
     </div>

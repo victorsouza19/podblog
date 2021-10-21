@@ -1,0 +1,32 @@
+<%- include('../../partials/header.ejs') %>
+  <body>
+    <%- include('../../partials/homenavbar.ejs') %> 
+    <div class="container">
+      <% result.articles.rows.forEach((article) => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+          <h3><%= article.title %></h3>
+        </div>
+        <div class="card-footer mt-2">
+          <a href="/<%= article.slug %>" class="btn btn-dark">Ler Artigo</a>
+        </div>
+      </div>
+      <% }); %> 
+      <div class="row">
+        <div class="col col-12 page-item">
+          <% if (result.page > 2) {%>
+            <a style="float:left" class="mt-4 mb-4 page-link" href="/articles/page/<%= result.page - 1 %>"> << </a>
+          <% } else if (result.page == 2) {%> 
+            <a style="float:left" class="mt-4 mb-4 page-link" href="/"> << </a>
+          <% } %> 
+
+          <% if (result.next) { %>
+          <a style="float:right" class="mt-4 mb-4 page-link" href="/articles/page/<%= result.page + 1 %>"> >> </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include('../../partials/footer.ejs') %>
+</body>
+<%- include('../../partials/footer.ejs') %>
