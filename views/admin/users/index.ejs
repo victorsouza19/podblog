@@ -1,0 +1,60 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+  <%- include('../../partials/navbar.ejs') %> 
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 class="mt-4">Usuários</h2>
+      <a href="/admin/users/create" class="btn btn-success d-flex align-items-center">Criar Usuário</a>
+    </div>
+    
+    <hr>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <th><%= user.id%></th>
+          <th><%=user.name%></th>
+          <th><%=user.email%></th>
+          <th>
+            <a href="/users/edit/<%= user.id %>" class="btn btn-dark">Editar</a>
+            <form method="POST" action="/users/delete" style="display: inline" onsubmit="deleteCheck(event, this)">
+              <input type="hidden" name="id" value="<%= user.id%>">
+              <button type="submit" class="btn btn-outline-danger">Apagar</button>
+            </form>
+          </th>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+<%- include('../../partials/footer.ejs') %>
+<script>
+  function deleteCheck(event, form){
+    event.preventDefault();
+
+    Swal.fire({
+      title: 'Você deseja apagar este usuário?',
+      text: 'Esta ação não pode ser desfeita.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#2D9C23',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, apagar!',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if(result.isConfirmed) {
+        form.submit();
+      }
+    });
+  };
+
+</script>

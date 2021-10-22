@@ -1,21 +1,32 @@
 const express = require("express");
 const app = express();
 const connection = require("./database/database");
-categoriesController = require("./categories/CategoriesController");
-articlesController = require("./articles/ArticlesController");
+const session = require("express-session");
+
+const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const User = require("./users/User");
+
+// view engine
+app.set('view engine', 'ejs');
 
 // body parser receive form POSTS
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+//sessions 
+app.use(session({
+  secret: "podpasswordblog4682",
+  cookie: {maxAge: 30000 }
+}));
+
+
 // Static files
 app.use(express.static('public'));
-
-// view engine
-app.set('view engine', 'ejs');
 
 // database 
 connection
@@ -28,6 +39,7 @@ connection
 
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", usersController);
 
 // routes
 app.get("/", (req, res) => {
