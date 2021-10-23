@@ -31,10 +31,10 @@
               <td>-</td>
             <% } %>
             <td>
-              <a href="/articles/edit/<%= article.id %>" class="btn btn-dark m-1">Editar</a>
+              <a href="/articles/edit/<%= article.id %>" class="btn btn-dark m-1 w-50">Editar</a>
               <form method="POST" action="/articles/delete" style="display: inline" onsubmit="deleteCheck(event, this)">
                 <input type="hidden" name="id" value="<%= article.id%>">
-                <button type="submit" class="btn btn-outline-danger m-1">Apagar</button>
+                <button type="submit" class="btn btn-outline-danger m-1 w-50">Apagar</button>
               </form>
             </td>
           </tr>
