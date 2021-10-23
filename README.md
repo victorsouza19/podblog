@@ -25,20 +25,28 @@
 
 > Home
 > 
-
-
-<br>
-
-> Listagem de Artigos(Admin)
-> 
-
+![podblog-home](https://user-images.githubusercontent.com/71740612/138571063-b28ce3a2-e559-4c4c-b249-ed5745a9da73.png)
 
 <br><br>
 
-> Deletar Artigo (com o SweetAlert2 no <code>event.preventDefault()</code>)
+> Listagem de Artigos<strong>(Admin)</strong>
 > 
+![podblog-admin](https://user-images.githubusercontent.com/71740612/138571163-8dc856ae-fc67-40d7-b2cc-b083626c9914.png)
+
+<br><br>
+
+> Deletar Artigo (com o SweetAlert2 em ação para conferir se o usuário não apertou o botão pode engano)<strong>(Admin)</strong>
+> 
+![podblog-delete](https://user-images.githubusercontent.com/71740612/138571167-1befca7b-119c-4162-94c2-9f42c5b7e94d.png)
+
+<br><br>
+
+> Edição de Artigo<strong>(Admin)</strong>
+> 
+![podblog-edit](https://user-images.githubusercontent.com/71740612/138571173-7c947538-d34c-4f90-ab98-5e1f4ccfdf54.png)
 
 ##
+
 
 <div align="left">
   O foco do projeto foi no back-end, buscando entender melhor alguns recursos e bibliotecas do Node.JS, foi feito uma básica estilização da página home, com a ajuda do Bootstrap, 
