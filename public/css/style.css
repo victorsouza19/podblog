@@ -71,8 +71,13 @@ body.home{
   flex-direction: column;
 }
 
-.card-animate{
+.card-animate,
+.btn-animate{
   transition:  0.5s;
+}
+
+.btn-animate:hover{
+  transform: translateY(-5px);
 }
 
 .card-animate:hover{
@@ -81,6 +86,27 @@ body.home{
 
 #footer-info{
   color: var(--body-bg);
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--nav-text) var(--nav-bg);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--nav-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--nav-text);
+  border-radius: 20px;
+  border: 3px solid var(--nav-bg);
 }
 
 @media screen and (min-width: 1024px){

@@ -46,18 +46,26 @@ app.use("/", usersController);
 
 // routes
 app.get("/", (req, res) => {
-  Article.findAll({
+  let pagination = true;
+  let limit = 6;
+
+  Article.findAndCountAll({
     raw: true, 
     order: [['id', 'DESC']],
-    limit: 6
+    limit: limit
 
   }).then(articles => {
+
+    if (articles.count <= limit){
+      pagination = false;
+    }
 
     Category.findAll().then(categories => {
 
       res.render('index', {
         articles: articles,
-        categories: categories
+        categories: categories,
+        pagination: pagination
       });
     });
     
@@ -88,18 +96,25 @@ app.get("/:slug", (req, res) => {
 
 app.get("/category/:slug", (req, res) => {
   const slug = req.params.slug;
+  let pagination = true;
+  let limit = 6;
 
   Category.findOne({
     where: {slug: slug},
     include: [{model: Article}] 
   
   }).then(category => {
+    if(category.articles.length <= limit){
+      pagination = false;
+    }
+    
     if(category != undefined){
 
       Category.findAll().then(categories => {
         res.render("index", {
           articles: category.articles,
-          categories: categories
+          categories: categories,
+          pagination: pagination
         });
       });
     } else {
