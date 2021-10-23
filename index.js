@@ -20,9 +20,11 @@ app.use(express.json());
 
 //sessions 
 app.use(session({
-  secret: "podpasswordblog4682",
-  cookie: {maxAge: 30000 }
+  secret: "podpassword4682blog",
+  cookie: {maxAge: 28800000 }
 }));
+
+// Redis
 
 
 // Static files
@@ -37,6 +39,7 @@ connection
   })
 
 
+  // set controllers
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", usersController);
@@ -46,7 +49,7 @@ app.get("/", (req, res) => {
   Article.findAll({
     raw: true, 
     order: [['id', 'DESC']],
-    limit: 5
+    limit: 6
 
   }).then(articles => {
 

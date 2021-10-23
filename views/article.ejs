@@ -1,17 +1,19 @@
 <%- include('partials/header.ejs') %>
-  <body>
+  <body class="home">
     <%- include('partials/homenavbar.ejs') %> 
     <div class="container">
       <div class="card mt-4 mb-4">
-        <div class="card-body">
+        <div class="card-body p-5">
           <h3><%= article.title %></h3>
+          <hr>
           <p><%- article.body %></p>
         </div>
         <div class="card-footer mt-2">
-          <a href="/" class="btn btn-dark">Voltar</a>
+          <a href="/" class="btn btn-home">Voltar</a>
         </div>
       </div>
     </div>
+    <%- include('partials/footer-info.ejs') %>
   </body>
   <%- include('partials/footer.ejs') %>
 </body>

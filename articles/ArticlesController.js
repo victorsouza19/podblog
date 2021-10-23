@@ -3,9 +3,9 @@ const Category = require("../categories/Category");
 const router = express.Router();
 const Article = require("./Article");
 const slugify = require("slugify");
-const { Router } = require("express");
+const adminAuth = require("../middlewares/adminAuth");
 
-router.get("/admin/articles", (req, res) => {
+router.get("/admin/articles", adminAuth, (req, res) => {
   Article.findAll({
     include: [{model: Category}] // Faz a função do INNER JOIN categories
   },
@@ -20,22 +20,23 @@ router.get("/admin/articles", (req, res) => {
 
 router.get("/articles/page/:num", (req, res) => {
   var page = req.params.num;
+  var limit = 6;
   var offset = 0;
 
   if(isNaN(page) || page == 1){
     offset = 0;
   } else {
-    offset = (parseInt(page) -1) * 5;
+    offset = (parseInt(page) -1) * limit;
   }
 
   Article.findAndCountAll({
-    limit: 5,
+    limit: limit,
     offset: offset,
     order: [['id', 'DESC']]
   }).then(articles => {
     let next;
 
-    if (offset + 5 >= articles.count){
+    if (offset + limit >= articles.count){
       next = false;
     } else {
       next = true;
@@ -58,7 +59,7 @@ router.get("/articles/page/:num", (req, res) => {
   });
 });
 
-router.get("/admin/articles/new", (req, res) => {
+router.get("/admin/articles/new", adminAuth, (req, res) => {
 
   Category.findAll({ order: [
     ['title', 'ASC']
@@ -70,7 +71,7 @@ router.get("/admin/articles/new", (req, res) => {
   })
 });
 
-router.post("/articles/save", (req, res) => {
+router.post("/articles/save", adminAuth,  (req, res) => {
   const { title, body, category } = req.body
   
   Article.create({
@@ -83,7 +84,7 @@ router.post("/articles/save", (req, res) => {
   });
 });
 
-router.post("/articles/delete", (req, res) => {
+router.post("/articles/delete", adminAuth, (req, res) => {
   const id = parseInt(req.body.id);
 
   if(id != undefined){
@@ -104,7 +105,7 @@ router.post("/articles/delete", (req, res) => {
   }
 });
 
-router.get("/articles/edit/:id", (req, res) => {
+router.get("/articles/edit/:id", adminAuth, (req, res) => {
   const id = parseInt(req.params.id);
 
   if(isNaN(id)){
@@ -129,7 +130,7 @@ router.get("/articles/edit/:id", (req, res) => {
   }
 });
 
-router.post("/articles/update", (req, res) => {
+router.post("/articles/update", adminAuth, (req, res) => {
   const { id, title, body, category} = req.body;
 
   Article.update({

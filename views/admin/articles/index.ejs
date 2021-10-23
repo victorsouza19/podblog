@@ -21,17 +21,21 @@
       <tbody>
         <% articles.forEach(article => { %>
         <tr>
-          <th><%= article.id%></th>
-          <th><%=article.title%></th>
-          <th><%=article.slug%></th>
-          <th><%=article.category.title%></th>
-          <th>
-            <a href="/articles/edit/<%= article.id %>" class="btn btn-dark">Editar</a>
+          <td><%= article.id%></td>
+          <td><%=article.title%></td>
+          <td><%=article.slug%></td>
+          <% if(article.categoryId != undefined) {%>
+            <td><%=article.category.title%></td>
+          <% } else {%>
+            <td>-</td>
+          <% } %>
+          <td>
+            <a href="/articles/edit/<%= article.id %>" class="btn btn-dark m-1">Editar</a>
             <form method="POST" action="/articles/delete" style="display: inline" onsubmit="deleteCheck(event, this)">
               <input type="hidden" name="id" value="<%= article.id%>">
-              <button type="submit" class="btn btn-outline-danger">Apagar</button>
+              <button type="submit" class="btn btn-outline-danger m-1">Apagar</button>
             </form>
-          </th>
+          </td>
         </tr>
         <% }) %>
       </tbody>

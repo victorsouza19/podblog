@@ -8,34 +8,16 @@
 --button-bg: #27F27F;
 --body-bg: #F2F2F2;
 --nav-bg: #1a1a1a;
-  color: #6805F2;
-  color: #5204BF;
-  color: #310273;
-  color: #F23E16;
-  color: #0D0D0D;
 }
-
-/* RGBA if necessary
-color: rgba(137, 121, 242, 1); }
-color: rgba(53, 242, 154, 1); }
-color: rgba(38, 242, 126, 1); }
-color: rgba(242, 242, 242, 1); }
-color: rgba(12, 12, 12, 1); }
-*/
-
-
-/* Color Theme Swatches in RGBA 
-color: rgba(103, 4, 242, 1);
-color: rgba(81, 3, 191, 1);
- color: rgba(49, 2, 114, 1);
-color: rgba(242, 62, 21, 1);
-color: rgba(12, 12, 12, 1);
-*/
 
 
 
 body{
   background-color: var(--body-bg);
+}
+
+body.home{
+  background-color: var(--nav-bg);
 }
 
 .navbar{
@@ -54,7 +36,6 @@ body{
   color: var(--body-bg);
   background-image: none;
 }
-
 
 .nav.item,
 .nav-link{
@@ -75,4 +56,39 @@ body{
   color: var(--nav-text-bg);
   box-shadow: 0px 1px var(--nav-text-bg);
 }
+
+.home-title{
+  color: var(--nav-text);
+}
+
+.btn-home{
+  background-color: var(--nav-text);
+  font-weight: 600;
+}
+
+.category-items{
+  display: flex;
+  flex-direction: column;
+}
+
+.card-animate{
+  transition:  0.5s;
+}
+
+.card-animate:hover{
+  transform: translateY(-10px);
+}
+
+#footer-info{
+  color: var(--body-bg);
+}
+
+@media screen and (min-width: 1024px){
+  .category-items{
+    
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
 

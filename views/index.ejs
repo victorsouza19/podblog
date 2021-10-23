@@ -1,23 +1,43 @@
 <%- include('partials/header.ejs') %>
-  <body>
+  <body class="home">
     <%- include('partials/homenavbar.ejs') %> 
-    <div class="container">
-      <% articles.forEach((article) => { %>
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3><%= article.title %></h3>
+    <div class="container px-4 py-5" id="custom-cards-home">
+      <h2 class="pb-4 border-bottom home-title">Artigos</h2>
+
+      <ul class="list-unstyled category-items">
+        <% categories.forEach(category => { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/category/<%= category.slug %>"><%= category.title %></a> 
+        </li>
+        <% }); %>
+      </ul>
+       
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <% articles.forEach((article) => { %>
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg card-animate" style="background-image: linear-gradient(0deg, rgba(204, 4, 121, 0.4), rgba(119, 2, 70, 0.4)), url('https://source.unsplash.com/featured/<%= article.id %>/?podcast');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><%= article.title %></h2>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <img src="https://github.com/victorsouza19.png" alt="user-image" width="32" height="32" class="rounded-circle border border-white">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <a href="/<%= article.slug %>" class="btn btn-home">Ler Artigo</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="card-footer mt-2">
-          <a href="/<%= article.slug %>" class="btn btn-dark">Ler Artigo</a>
-        </div>
+        <% }); %> 
       </div>
-      <% }); %> 
       <div class="row">
         <div class="col col-12 page-item">
           <a style="float:right" class="mt-4 mb-4 page-link" href="/articles/page/2"> >> </a>
         </div>
       </div>
     </div>
+    <%- include('partials/footer-info.ejs') %>
   </body>
   <%- include('partials/footer.ejs') %>
 </body>

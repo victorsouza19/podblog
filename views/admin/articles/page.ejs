@@ -1,17 +1,26 @@
 <%- include('../../partials/header.ejs') %>
-  <body>
+  <body class="home">
     <%- include('../../partials/homenavbar.ejs') %> 
     <div class="container">
-      <% result.articles.rows.forEach((article) => { %>
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3><%= article.title %></h3>
+     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <% result.articles.rows.forEach((article) => { %>
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg card-animate" style="background-image: linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url('https://source.unsplash.com/featured/<%= article.id %>/?podcast');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><%= article.title %></h2>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <img src="https://github.com/victorsouza19.png" alt="user-image" width="32" height="32" class="rounded-circle border border-white">
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <a href="/<%= article.slug %>" class="btn btn-home">Ler Artigo</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="card-footer mt-2">
-          <a href="/<%= article.slug %>" class="btn btn-dark">Ler Artigo</a>
-        </div>
+        <% }); %> 
       </div>
-      <% }); %> 
       <div class="row">
         <div class="col col-12 page-item">
           <% if (result.page > 2) {%>
@@ -26,6 +35,7 @@
         </div>
       </div>
     </div>
+    <%- include('../../partials/footer-info.ejs') %>
   </body>
   <%- include('../../partials/footer.ejs') %>
 </body>

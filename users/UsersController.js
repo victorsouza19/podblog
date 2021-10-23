@@ -164,4 +164,40 @@ router.post("/users/update", (req, res) => {
   });
 });
 
+router.get("/login", (req, res) => {
+  res.render("admin/users/login");
+});
+
+router.post("/auth/login", (req, res) => {
+  const {email, password} = req.body;
+  
+  User.findOne({where: {email: email}}).then(user => {
+    if(user != undefined){
+      let correct = bcrypt.compareSync(password, user.password);
+
+      if(correct){
+        req.session.user = {
+          id: user.id,
+          name: user.name,
+          email: user.email
+        }
+        res.redirect("/admin/articles");
+      } else {
+        res.redirect("/login");
+      }
+
+    } else {
+      res.redirect("/login");
+    }
+  });
+
+
+});
+
+router.get("/logout", (req, res) => {
+  req.session.user = undefined;
+  res.redirect("/");
+
+});
+
 module.exports = router;
